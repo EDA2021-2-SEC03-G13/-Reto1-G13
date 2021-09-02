@@ -48,8 +48,7 @@ def loadData(catalog):
     """
     loadArtist(catalog)
     loadWork(catalog)
-    loadBooksTags(catalog)
-    sortBooks(catalog)
+    sortArtist(catalog)
 
 
 def loadArtist(catalog):
