@@ -18,31 +18,79 @@
  *
  * You should have received a copy of the GNU General Public License
  * along withthis program.  If not, see <http://www.gnu.org/licenses/>.
- *
- * Contribuciones:
- *
- * Dario Correal - Version inicial
  """
 
-
 import config as cf
-from DISClib.ADT import list as lt
-from DISClib.Algorithms.Sorting import shellsort as sa
-assert cf
+import model
+import csv
+
 
 """
-Se define la estructura de un catálogo de videos. El catálogo tendrá dos listas, una para los videos, otra para las categorias de
-los mismos.
+El controlador se encarga de mediar entre la vista y el modelo.
 """
 
-# Construccion de modelos
 
-# Funciones para agregar informacion al catalogo
+# Inicialización del Catálogo de libros
 
-# Funciones para creacion de datos
+def initCatalog():
+    
+    catalog = model.newCatalog()
+    return catalog
 
-# Funciones de consulta
 
-# Funciones utilizadas para comparar elementos dentro de una lista
+# Funciones para la carga de datos
+
+
+def loadData(catalog):
+    """
+    Carga los datos de los archivos y cargar los datos en la
+    estructura de datos
+    """
+    loadArtist(catalog)
+    loadWork(catalog)
+    loadBooksTags(catalog)
+    sortBooks(catalog)
+
+
+def loadArtist(catalog):
+    """
+    Carga los libros del archivo.  Por cada libro se toman sus autores y por
+    cada uno de ellos, se crea en la lista de autores, a dicho autor y una
+    referencia al libro que se esta procesando.
+    """
+    artista = cf.data_dir + 'Artists-utf8-small'
+    input_file = csv.DictReader(open(artista, encoding='utf-8'))
+    for f in input_file:
+        model.addBook(catalog, f)
+
+
+def loadWork(catalog):
+    """
+    Carga todos los tags del archivo y los agrega a la lista de tags
+    """
+    work = cf.data_dir + 'Artworks-utf8-small'
+    input_file = csv.DictReader(open(work, encoding='utf-8'))
+    for f in input_file:
+        model.addTag(catalog, f)
+
+
 
 # Funciones de ordenamiento
+
+def sortArtist(catalog):
+    """
+    Ordena los libros por average_rating
+    """
+    model.sortArtist(catalog)
+
+
+# Funciones de consulta sobre el catálogo
+
+def getworksByArtist(catalog, authorname):
+    """
+    Retrona los libros de un autor
+    """
+    author = model.getworksByArtist(catalog, authorname)
+    return author
+
+
