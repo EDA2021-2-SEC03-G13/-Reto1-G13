@@ -85,11 +85,10 @@ def sortArtist(catalog):
 
 # Funciones de consulta sobre el catálogo
 
-def getworksByArtist(catalog, authorname):
-    """
-    Retrona los libros de un autor
-    """
-    author = model.getworksByArtist(catalog, authorname)
-    return author
+def cmpArtworkByDateAcquired(artwork1, artwork2):
+    if artwork1['DateAcquired'] < artwork2['DateAcquired']:
+        return True
+    else:
+        return False
 
 

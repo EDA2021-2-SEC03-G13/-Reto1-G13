@@ -38,6 +38,7 @@ operación solicitada
 def printMenu():
     print("Bienvenido")
     print("1- Cargar catalog del museo")
+    print("2- requerimiento 2")
     
 
 
@@ -81,6 +82,7 @@ catalog = None
 """
 Menu principal
 """
+
 while True:
     printMenu()
     inputs = input('Seleccione una opción para continuar\n')
@@ -91,11 +93,14 @@ while True:
             #arraylist
         elif variable == 2:
             #linkedlist
+        else
+            sys.exit(0)
 
     elif int(inputs[0]) == 2:
-        number = input("Buscando los TOP ?: ")
-        books = controller.getBestBooks(catalog, int(number))
-        printBestBooks(books)
+        artwork1 = input("obra numero 1")
+        artwork2 = input("obra numero 2")
+        cmpArtworkByDateAcquired(artwork1, artwork2)
+        
 
     elif int(inputs[0]) == 3:
         authorname = input("Nombre del autor a buscar: ")
