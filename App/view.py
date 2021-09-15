@@ -89,7 +89,7 @@ while True:
         variable = input("1: ARRAY_LIST 2:LINKED LIST")
         if variable == 1:
             #arraylist
-        elif == 2:
+        elif variable == 2:
             #linkedlist
 
     elif int(inputs[0]) == 2:
