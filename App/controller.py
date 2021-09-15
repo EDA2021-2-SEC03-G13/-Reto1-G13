@@ -23,7 +23,7 @@
 import config as cf
 import model
 import csv
-from DISClib.ADT import list as lt
+from DISClib.ADT import list as f
 
 
 """

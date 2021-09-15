@@ -37,7 +37,7 @@ operación solicitada
 
 def printMenu():
     print("Bienvenido")
-    print("1- Cargar catalog del museo")
+    print("1- Cargar catalogo del museo")
     print("2- requerimiento 2")
     
 
@@ -100,7 +100,7 @@ while True:
         artwork1 = input("obra numero 1")
         artwork2 = input("obra numero 2")
         cmpArtworkByDateAcquired(artwork1, artwork2)
-        
+
 
     elif int(inputs[0]) == 3:
         authorname = input("Nombre del autor a buscar: ")
