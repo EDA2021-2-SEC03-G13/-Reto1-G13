@@ -37,11 +37,8 @@ operación solicitada
 
 def printMenu():
     print("Bienvenido")
-    print("1- Cargar información en el catálogo")
-    print("2- Consultar los Top x libros por promedio")
-    print("3- Consultar los libros de un autor")
-    print("4- Libros por género")
-    print("0- Salir")
+    print("1- Cargar catalog del museo")
+    
 
 
 def initCatalog():
@@ -88,14 +85,12 @@ while True:
     printMenu()
     inputs = input('Seleccione una opción para continuar\n')
     if int(inputs[0]) == 1:
-        print("Cargando información de los archivos ....")
-        catalog = initCatalog()
-        loadData(catalog)
-        print('Libros cargados: ' + str(lt.size(catalog['books'])))
-        print('Autores cargados: ' + str(lt.size(catalog['authors'])))
-        print('Géneros cargados: ' + str(lt.size(catalog['tags'])))
-        print('Asociación de Géneros a Libros cargados: ' +
-              str(lt.size(catalog['book_tags'])))
+        print("que tipo de lista quiere: ")
+        variable = input("1: ARRAY_LIST 2:LINKED LIST")
+        if variable == 1:
+            #arraylist
+        elif == 2:
+            #linkedlist
 
     elif int(inputs[0]) == 2:
         number = input("Buscando los TOP ?: ")
