@@ -23,7 +23,14 @@
 import config as cf
 import model
 import csv
-
+import DISClib.DataStructures.arraylist as array
+import DISClib.DataStructures.singlelinkedlist as linked
+import DISClib.Algorithms.Sorting.quicksort 
+import DISClib.Algorithms.Sorting.insertionsort 
+import DISClib.Algorithms.Sorting.mergesort 
+import DISClib.Algorithms.Sorting.shellsort 
+from DISClib.DataStructures import arraylistiterator 
+from DISClib.DataStructures import linkedlistiterator 
 
 """
 El controlador se encarga de mediar entre la vista y el modelo.
@@ -32,41 +39,43 @@ El controlador se encarga de mediar entre la vista y el modelo.
 
 # Inicialización del Catálogo de libros
 
-def initCatalog():
-    
-    catalog = model.newCatalog()
-    return catalog
+def newcatalog (tipo):
+    if tipo == "1":
+        lista = array.newList(None, None, None, ",")
+    elif tipo == "2":
+        lista = linked.newList(None, None, None, ",")
+    return lista
+
+def adddata (lista, tipo, f):
+    if tipo == "1":
+        lista = array.addLast(lista, f)
+    elif tipo == "2":
+        lista = linked.addLast(lista, f)
+    return lista
+
 
 
 # Funciones para la carga de datos
 
-
+"""
 def loadData(catalog):
-    """
-    Carga los datos de los archivos y cargar los datos en la
-    estructura de datos
-    """
-    loadArtist(catalog)
-    loadWork(catalog)
-    sortArtist(catalog)
+    
+    
+    loadArray(catalog)
+    loadLinked(catalog)
+    
 
 
-def loadArtist(catalog):
-    """
-    Carga los libros del archivo.  Por cada libro se toman sus autores y por
-    cada uno de ellos, se crea en la lista de autores, a dicho autor y una
-    referencia al libro que se esta procesando.
-    """
+def loadArray(catalog):
+    
     artista = cf.data_dir + 'Artists-utf8-small'
     input_file = csv.DictReader(open(artista, encoding='utf-8'))
     for f in input_file:
         model.addBook(catalog, f)
 
 
-def loadWork(catalog):
-    """
-    Carga todos los tags del archivo y los agrega a la lista de tags
-    """
+def loadLinked(catalog):
+ 
     work = cf.data_dir + 'Artworks-utf8-small'
     input_file = csv.DictReader(open(work, encoding='utf-8'))
     for f in input_file:
@@ -77,10 +86,9 @@ def loadWork(catalog):
 # Funciones de ordenamiento
 
 def sortArtist(catalog):
-    """
-    Ordena los libros por average_rating
-    """
+
     model.sortArtist(catalog)
+"""
 
 
 # Funciones de consulta sobre el catálogo

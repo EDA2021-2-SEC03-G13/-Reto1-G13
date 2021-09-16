@@ -20,6 +20,7 @@
  * along withthis program.  If not, see <http://www.gnu.org/licenses/>.
  """
 
+
 import config as cf
 import sys
 import controller
@@ -38,7 +39,8 @@ operación solicitada
 def printMenu():
     print("Bienvenido")
     print("1- Cargar catalogo del museo")
-    print("2- requerimiento 2")
+    print("2- ordenar por fecha de adquisición")
+    print("3- requerimiento 2")
     
 
 
@@ -83,29 +85,39 @@ catalog = None
 Menu principal
 """
 
+        #size = input("Indique tamaño de la muestra: ")
+        #result = controller.sortBooks(catalog, int(size))
+        #print("Para la muestra de", size, " elementos, el tiempo (mseg) es: ", str(result[0]))
+        #printSortResults(result[1])
+
 while True:
     printMenu()
     inputs = input('Seleccione una opción para continuar\n')
     if int(inputs[0]) == 1:
         print("que tipo de lista quiere: ")
-        variable = input("1: ARRAY_LIST 2:LINKED LIST")
-        if variable == 1:
-            #arraylist
-        elif variable == 2:
-            #linkedlist
-        else
-            sys.exit(0)
+        tipo = input("1: ARRAY_LIST 2:LINKED LIST")
+        print("tamaño (small-10): ")
+        tamaño = input("")
+        lista = controller.initCatalog(tipo)
+        controller.loadData(lista, tipo, tamaño)
 
     elif int(inputs[0]) == 2:
-        artwork1 = input("obra numero 1")
-        artwork2 = input("obra numero 2")
-        cmpArtworkByDateAcquired(artwork1, artwork2)
+        print ("escoger tipo de ordenamiento:")
+        ord = input("insertion(1) /n shell(2) /n merge(3) /n quick(4)")
+        if ord == 1:
+            insertionsort
+        elif ord == 2:
+            shellsort
+        elif ord == 3:
+            mergesort
+        elif ord == 4:
+            quicksort
 
 
     elif int(inputs[0]) == 3:
-        authorname = input("Nombre del autor a buscar: ")
-        author = controller.getBooksByAuthor(catalog, authorname)
-        printAuthorData(author)
+        artwork1 = input("obra numero 1")
+        artwork2 = input("obra numero 2")
+        cmpArtworkByDateAcquired(artwork1, artwork2)
 
     elif int(inputs[0]) == 4:
         label = input("Etiqueta a buscar: ")
