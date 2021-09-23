@@ -23,19 +23,12 @@
 import config as cf
 import model
 import csv
-from DISClib.ADT import list as l
-from tkinter import Tk     # from tkinter import Tk for Python 3.x
-from tkinter.filedialog import askopenfilename
-
-
-
-
 
 """
 El controlador se encarga de mediar entre la vista y el modelo.
 """
 
-# Inicialización del Catálogo de libros
+# Inicialización del Catálogo 
 
 def initCatalog(tipo):
     """
@@ -45,21 +38,18 @@ def initCatalog(tipo):
     return catalog
 
 
-
-
 # Funciones para la carga de datos
 
 
-def loadData(catalog, tipo, tamaño):
+def loadData(catalog, tipo, archivo):
     """
     Carga los datos de los archivos y cargar los datos en la
     estructura de datos
     """
-    loadArtist(catalog, tipo, tamaño)
+    return loadArtist(catalog, tipo, archivo)
     
 
-
-def loadArtist(catalog, tipo, tamaño):
+def loadArtist(catalog, tipo, archivo):
     """
     Carga los libros del archivo.  Por cada libro se toman sus autores y por
     cada uno de ellos, se crea en la lista de autores, a dicho autor y una
@@ -67,19 +57,71 @@ def loadArtist(catalog, tipo, tamaño):
     """
     dialect = csv.excel()
     dialect.delimiter=","
-    if tamaño == "10":
-        file = "Artists-utf8-10pct.csv"
-    elif tamaño == "small":
-        file = "Artists-utf8-small.csv"
     
-    with open(  cf.data_dir + file, encoding="utf-8") as csvfile:
+    with open(  cf.data_dir + archivo, encoding="utf-8") as csvfile:
         input_file = csv.DictReader(csvfile,dialect=dialect)
         for f in input_file:
-            print(f)
-            model.adddata(catalog, tipo, f)
-    
+            catalog = model.adddata(catalog, tipo, f)
+    return catalog
+        
+
+# Funciones de consulta
+
+#REQ 1 
+def mergeSortReq1(catalogo):
+    return model.mergeSortReq1(catalogo)
+
+def catalogoAños(catalogo,año1,año2):
+    return model.catalogoAños(catalogo,año1,año2)
+
+def imprimir3Py3U(catalogo_ordenado_años):
+    model.imprimir3Py3U(catalogo_ordenado_años)
 
 
+#REQ 2 
+def mergeSortReq2(catalogo):
+    return model.mergeSortReq2(catalogo)
+
+def catalogoFechas(catalogo,fecha1,fecha2):
+    return model.catalogoFechas(catalogo,fecha1,fecha2)
+
+def imprimir3Py3UREQ2(catalogo_ordenado_fechas, archivo, tipo):
+    lista = initCatalog(tipo)
+    catalogoArtistas = loadData(lista, tipo, archivo)
+    model.imprimir3Py3UREQ2(catalogo_ordenado_fechas,catalogoArtistas)
 
 
+#REQ 3
+def CID(catalogo_artistas,artista):
+    return model.CID(catalogo_artistas,artista)
 
+def obrasTecnica(ConstituentID,catalogo_obras):
+    return model.obrasTecnica(ConstituentID,catalogo_obras)
+
+def imprimirREQ3(obras):
+    model.imprimirREQ3(obras)
+
+
+#REQ 4
+def obtenerNacionalidades(artistas):
+    return model.obtenerNacionalidades(artistas)
+
+def obtenerNombres(catalogo_artistas):
+    return model.obtenerNombres(catalogo_artistas)
+
+def catalogoObrasNacionalidades(catalogo_obras,dic_nacionalidades,dic_nombres):
+    return model.catalogoObrasNacionalidades(catalogo_obras,dic_nacionalidades,dic_nombres)
+
+def topNacionalidades(catalogo_obras):
+    return model.topNacionalidades(catalogo_obras)
+
+def informaciónObrasNacionalidad(catalogo_obras,nacionalidad):
+    return model.informaciónObrasNacionalidad(catalogo_obras,nacionalidad)
+
+#REQ 5 
+
+def calcularCostoDepartamento(obras,departamento):
+    return model.calcularCostoDepartamento(obras,departamento)
+
+def tablasREQ5(obras,dic_artistas):
+    return model.tablasREQ5(obras,dic_artistas)
